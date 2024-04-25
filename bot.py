@@ -1,28 +1,23 @@
 # Dictionary to store questions, answers, and related questions
-qa_data = {
-    "Hi": ["Hello",[]],
-    "What is the capital of France?": ["Paris", ["What is the currency of France?", "What is the population of Paris?"]],
-    "What is the largest ocean on Earth?": ["Pacific Ocean", ["What is the deepest point in the Pacific Ocean?"]],
-    "Who is the author of the Harry Potter series?": ["J.K. Rowling", ["How many Harry Potter books are there?"]],
-    "What is the smallest planet in our solar system?": ["Mercury", ["What is the temperature range on Mercury?"]],
-    "What is the currency of France?": ["Euro", []],
-    "What is the population of Paris?": ["2.16 million", []],
-    "What is the deepest point in the Pacific Ocean?": ["Mariana Trench", []],
-    "How many Harry Potter books are there?": ["7", []],
-    "What is the temperature range on Mercury?": ["-290°F to 800°F", []]
-}
+import json
+
+with open('data.json', 'r') as data:
+    qa_data = json.load(data)
 
 # Function to display the available questions
-def show_questions():
+def show_questions() -> None:
     print("Available Questions:")
     for question in qa_data.keys():
         print("- " + question)
 
+
+# Function to get the questions
 def get_questions():
     return qa_data.keys()
 
+
 # Function to get the user's answer and provide feedback
-def get_answer(question):
+def get_answer(question: str) -> (tuple[None, None] | tuple):
     try:
         answer, related_questions = qa_data[question]
     except KeyError:

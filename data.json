@@ -1,8 +1,3 @@
-# ChatBot - python
-
-## Paste the questions and answers data in the json file (data.json)
-Example Format:
-```json
 {
   "Hi": ["Hello", []],
   "What is the capital of France?": [
@@ -27,35 +22,3 @@ Example Format:
   "How many Harry Potter books are there?": ["7", []],
   "What is the temperature range on Mercury?": ["-290°F to 800°F", []]
 }
-
-```
-
-## Creating virtual environment
-
-```sh
-python3 -m venv .venv
-```
-
-## activate the environment
-
-```sh
-source .venv/bin/activate
-```
-
-## install the requirements
-
-```sh
-pip install -r requirements.txt
-```
-
-## run the bot
-```
-python app.py
-```
-
-
-If Everything went well,Then now you can chat with the bot.
-<br>
-By clicking the link below.
-<br>
-<a href="http://127.0.0.1:4100/" target="_blank">Open Bot</a>

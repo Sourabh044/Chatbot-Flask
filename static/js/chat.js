@@ -41,13 +41,11 @@ function getBotResponse(value = undefined) {
     var botHtml = '<p class="botText"><span>' + data.answer + "</span></p>";
     $("#chatbox").append(botHtml);
     if (data.related_questions.length > 0) {
-      $("#chatbox").append(
-        '<p class=""><span>' + "Related Questions" + "</span></p>'"
-      );
+      $("#chatbox").append('<p class=""><span>Related Questions</span></p>');
       appendRelatedQuestions(data.related_questions);
     } else {
       var startAgainBtn = document.createElement("button");
-      startAgainBtn.classList.add("btn", "btn-light");
+      startAgainBtn.classList.add("btn", "btn-light", "mb-1");
       startAgainBtn.textContent = "Start Again";
       startAgainBtn.onclick = (ev) => {
         ev.target.remove();
