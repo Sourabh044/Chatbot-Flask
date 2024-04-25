@@ -20,7 +20,7 @@
         <!-- <p align="center"><img src="static\\chatbot1.png" alt="Python-BOT" height="210" width="220"></p> -->
         <div class="boxed">
             <div>
-                <div id="chatbox" class="container">
+                <div id="chatbox" class="container chat-messages">
                     <p class="botText">
                         <span>Hi! I'm your AI-Generative Chatbot</span>
                     </p>
@@ -28,16 +28,13 @@
                     {% for question in questions %}
                     <button type="button" class="btn btn-light m-1" onclick="getBotResponse(this.innerHTML)">{{question}}</button>
                     {% endfor %}
-                      
-                </div>
-                <div id="userInput">
-                    <input id="textInput" type="text" name="msg" placeholder="Message" />
                 </div>
             </div>
-            <script>
-                
-            </script>
         </div>
+        <div id="userInput">
+            <input id="textInput" type="text" name="msg" placeholder="Message" />
+        </div>
+        
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>

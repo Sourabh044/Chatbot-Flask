@@ -9,6 +9,7 @@ body, html {
     font-family: Arial;
 }
 #chatbox {
+height: 300px;
 margin-left: auto;
 margin-right: auto;
 width: 40%;
@@ -62,5 +63,12 @@ margin-left: auto;
 margin-right: auto;
 width: 78%;
 margin-top: 60px;
+overflow-y: scroll;
 border: 1px solid green;
+height: 745px;
+}
+
+.chat-messages {
+    scroll-behavior: smooth;
+    /* Add smooth scrolling */
 }

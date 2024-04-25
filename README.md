@@ -1,6 +1,6 @@
 # ChatBot - python
 
-## Creating vitual environment
+## Creating virtual environment
 
 ```sh
 python3 -m venv .venv
@@ -24,6 +24,8 @@ python app.py
 ```
 
 
-Now you can chat with the bot.
-
-[open Bot](http://127.0.0.1:4100/ "ChatBot")
+If Everything went well,Then now you can chat with the bot.
+<br>
+By clicking the link below.
+<br>
+<a href="http://127.0.0.1:4100/" target="_blank">Open Bot</a>
