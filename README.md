@@ -48,8 +48,15 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## run the bot
+## Setup DB
+
+```sh
+flask db migrate -m "Initial Migration"  -d db/migrations #run this only when first time DB initialization.
+flask db upgrade -d db/migrations
 ```
+
+## run the bot
+```sh
 python app.py
 ```
 
