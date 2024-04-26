@@ -1,5 +1,6 @@
 # Dictionary to store questions, answers, and related questions
 import json
+from db import Question
 
 with open('data.json', 'r') as data:
     qa_data = json.load(data)
@@ -13,7 +14,11 @@ def show_questions() -> None:
 
 # Function to get the questions
 def get_questions():
-    return qa_data.keys()
+    questions_data = Question.query.all()
+    questions = []
+    for q in questions_data:
+        questions.append(q.text)
+    return questions
 
 
 # Function to get the user's answer and provide feedback
