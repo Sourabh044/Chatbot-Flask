@@ -1,25 +1,20 @@
 import json
 from flask import Flask, render_template, request , jsonify
-from bot import get_questions , get_answer 
-from flask_migrate import Migrate
-from flask_bcrypt import Bcrypt
-from config import DB_URI, APP_SECRET
-from db import database,  ChatRecords, Question, Answer
-migrate = Migrate()
-bcrypt = Bcrypt()
-
+from bot import get_questions
+from config import Development
+from db import database,  ChatRecords, Question
+from routes import auth_bp
+from flask_login import login_required
+from auth import login_manager, migrate, bcrypt
 
 def create_app():
     app = Flask(__name__)
-    app.secret_key = APP_SECRET
-    app.config['SQLALCHEMY_DATABASE_URI'] = DB_URI
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-
+    app.config.from_object(Development)
     database.init_app(app)
+    login_manager.init_app(app)
     migrate.init_app(app, database)
     bcrypt.init_app(app)
     return app
-
 
 app = create_app()
 
@@ -31,10 +26,13 @@ def save_chat_record(question, answer, user_id):
     database.session.commit()
     return True
 
+
+app.register_blueprint(auth_bp)
+
 @app.route('/')
+@login_required
 def chat():
-    # createQuetions()
-    return render_template('index.html', questions=get_questions())
+    return render_template('chat.html', questions=get_questions())
 
 @app.route('/get-answer/',)
 def response_answer():

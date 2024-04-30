@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title%} {{ title }} {% endblock %}
+
+
+{% block auth_content %}
+
+<div class="vh-100 login-page"> 
+    <div class="row h-100 d-flex align-items-center">
+        <div class="col-xl-4 col-lg-6 col-md-6 mx-auto p-5 ">
+            <div class="w-100 card p-4 shadow">
+
+                <form action="{{ request.path }}" method="POST" class="card-body"> 
+
+                    {{ form.csrf_token }}
+
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    <div class="text-center mb-3">
+                        <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                          width="200px" alt="profile">
+                    </div>
+                    <div class="form-group mb-3">
+                        {{ form.email(class_="form-control",placeholder="Email")}}
+                    </div>
+                    {% for error in form.email.errors %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ error }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor%}
+                    <div class="form-group mb-3">
+                        {{ form.password(class_="form-control",placeholder="Password")}}
+                    </div>
+                    {% for error in form.password.errors %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ error }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div> {% endfor%}
+
+
+
+                    <div class="text-center">
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-block btn-primary mb-3"> {{ btn_action }} </button>
+                        </div>
+
+                        <p>
+                            New here?
+                            <a class="text-decoration-none ps-1" href="{{url_for('auth.register')}}">Create account</a>
+                        </p>
+                        
+                    </div>
+
+
+
+
+
+
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock auth_content %}

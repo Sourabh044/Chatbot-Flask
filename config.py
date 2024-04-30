@@ -5,5 +5,7 @@ import os
 load_dotenv()
 
 
-DB_URI = os.environ.get('DB_URI')
-APP_SECRET = os.environ.get('APP_SECRET')
+class Development(object):
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DB_URI')
+    SECRET_KEY = os.environ.get('APP_SECRET')
+    SQLALCHEMY_TRACK_MODIFICATIONS = True

@@ -1,6 +1,27 @@
 from db.database import db
 from sqlalchemy import func
 from sqlalchemy.orm import relationship
+from flask_login import UserMixin
+
+
+class User(UserMixin, db.Model):
+    __tablename__ = "users"
+    # __bind_key__ = 'zerodha'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(300), nullable=False, unique=True)
+    isAdmin = db.Column(db.Boolean(), default=False)
+
+    # Timestamps
+    created_at = db.Column(db.DateTime(timezone=True),
+                           server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
+    last_login = db.Column(db.DateTime(timezone=True),
+                           default=None, nullable=True)
+
+    def __repr__(self):
+        return '<User %r>' % self.username
 
 
 class Question(db.Model):
@@ -16,8 +37,6 @@ class Question(db.Model):
                            server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     is_deleted = db.Column(db.Boolean, default=False)
-
-
 class RelatedQuestion(db.Model):
     __tablename__ = 'related_questions'
 
@@ -34,8 +53,6 @@ class RelatedQuestion(db.Model):
                            server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     is_deleted = db.Column(db.Boolean, default=False)
-
-
 class Answer(db.Model):
     __tablename__ = 'answers'
 
@@ -49,8 +66,6 @@ class Answer(db.Model):
                            server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     is_deleted = db.Column(db.Boolean, default=False)
-
-
 class ChatRecords(db.Model):
     __tablename__ = 'chat_records'
 
