@@ -21,7 +21,7 @@ class User(UserMixin, db.Model):
                            default=None, nullable=True)
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return f'<User {self.username}>'
 
 
 class Question(db.Model):
@@ -72,7 +72,7 @@ class Answer(db.Model):
     is_deleted = db.Column(db.Boolean, default=False)
 
     def __repr__(self) -> str:
-        return f"{self.text}"
+        return f"Answer -> {self.text}"
 class ChatRecords(db.Model):
     __tablename__ = 'chat_records'
 

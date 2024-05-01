@@ -1,12 +1,12 @@
 import json
 from flask import Flask, render_template, request , jsonify
-from bot import get_questions
-from config import Development
+from modules.bot import get_questions
+from modules.config import Development
+from modules.auth import login_manager, migrate, bcrypt
+from modules.admin import admin
 from db import database,  ChatRecords, Question
 from routes import auth_bp
 from flask_login import login_required
-from auth import login_manager, migrate, bcrypt
-from admin import admin
 
 
 
@@ -33,11 +33,15 @@ def save_chat_record(question, answer, user_id):
 
 
 app.register_blueprint(auth_bp)
-
 @app.route('/')
 @login_required
 def chat():
-    return render_template('chat.html', questions=get_questions())
+    data = {
+        'key1': 'value1',
+        'key2': 'value2',
+        'key3': 'value3',
+    }
+    return render_template('chat.html', data=data, questions=get_questions())
 
 @app.route('/get-answer/',)
 def response_answer():
@@ -45,6 +49,8 @@ def response_answer():
     question_obj = Question.query.filter_by(text=question).all()
     if question_obj:
         user_id = request.args.get('user_id', 1)
+        a = question_obj[0].answers
+        print(a[0].question)
         answer = question_obj[0].answers[0].text
         related_questions = [
             q.related_question.text for q in question_obj[0].related_questions]

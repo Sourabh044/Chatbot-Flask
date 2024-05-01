@@ -2,10 +2,15 @@
 import json
 from db import Question
 
-with open('data.json', 'r') as data:
-    qa_data = json.load(data)
+try:
+    with open('data.json', 'r') as data:
+        qa_data = json.load(data)
+except FileNotFoundError:
+    qa_data = {}
 
 # Function to display the available questions
+
+
 def show_questions() -> None:
     print("Available Questions:")
     for question in qa_data.keys():
@@ -28,7 +33,7 @@ def get_answer(question: str) -> (tuple[None, None] | tuple):
     except KeyError:
         print("Invalid question. Please try again.")
         return None, None
-    return answer , related_questions
+    return answer, related_questions
 
 
 if __name__ == "__main__":
