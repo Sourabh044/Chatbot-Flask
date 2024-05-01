@@ -37,6 +37,10 @@ class Question(db.Model):
                            server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     is_deleted = db.Column(db.Boolean, default=False)
+
+    def __repr__(self) -> str:
+        return f"{self.text}"
+
 class RelatedQuestion(db.Model):
     __tablename__ = 'related_questions'
 
@@ -66,6 +70,9 @@ class Answer(db.Model):
                            server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     is_deleted = db.Column(db.Boolean, default=False)
+
+    def __repr__(self) -> str:
+        return f"{self.text}"
 class ChatRecords(db.Model):
     __tablename__ = 'chat_records'
 

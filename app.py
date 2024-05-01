@@ -6,6 +6,11 @@ from db import database,  ChatRecords, Question
 from routes import auth_bp
 from flask_login import login_required
 from auth import login_manager, migrate, bcrypt
+from admin import admin
+
+
+
+
 
 def create_app():
     app = Flask(__name__)
@@ -14,10 +19,10 @@ def create_app():
     login_manager.init_app(app)
     migrate.init_app(app, database)
     bcrypt.init_app(app)
+    admin.init_app(app)
     return app
 
 app = create_app()
-
 
 def save_chat_record(question, answer, user_id):
     chat_record = ChatRecords(

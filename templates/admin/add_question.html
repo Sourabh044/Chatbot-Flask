@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h1>Create Question</h1>
+
+    <select class="form-select" multiple aria-label="Multiple select example">
+        <option selected>Open this select menu</option>
+        
+        {% for question in questions %}
+        <option>{{questions.text}}</option>
+        {% endfor %}
+            
+      </select>
+{% endblock content %}
+    
