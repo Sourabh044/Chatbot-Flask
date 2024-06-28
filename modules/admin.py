@@ -11,6 +11,7 @@ class RelatedQuestionAdminView(ModelView):
     column_hide_backrefs = False
     column_list = ('id', 'question_id', 'related_question_id')
     edit_modal = True
+    can_export = True
 
 
 class CustomAdminHomeView(AdminIndexView):
